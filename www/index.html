@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <title>Hello World</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue darken-3">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="signup">
+        <form action="index.html" method="post">
+            <input type="text" placeholder="Введите Логин" id="login">
+            <input type="text" placeholder="Введите Email" id="email">
+            <input type="text" placeholder="Введите Пароль" id="password">
+            <input type="text" placeholder="Подтвердите Пароль" id="password_check">
+            <a class="waves-effect waves-light btn blue darken-3" style="margin-bottom: 5%; margin-left:17%; margin-top: 3%" id="singinajaxbtn">Зарегистрироваться</a>
+            <a class="waves-effect waves-light btn blue darken-3" style="margin-left:14%" id="signinbtn">Я уже зарегистрирован</a>
+        </form>
+    </div>
+
+    <div class="container" id="signin">
+        <input type="text" placeholder="Введите Логин" style="margin-bottom: 10%" id="signinlogin">
+        <input type="text" placeholder="Введите Пароль" id="signinpassword">
+        <a class="waves-effect waves-light btn blue darken-3" style="margin-top: 5%;margin-left:37%" id="signupajaxbtn">Войти</a>
+        <a class="waves-effect waves-light btn blue darken-3" id="signupbtn"><i class="material-icons left">keyboard_return</i>Назад</a>
+    </div>
+
+    <div class="container" id="checkrole">
+       <h3>Выберите Роль</h3>
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header" id="choosevol">
+                    <i class="material-icons">filter_drama</i> Я Волонтер
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header" id="chooseclient">
+                    <i class="material-icons">place</i> Я Нуждаюсь в помощи
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="container" id="volregis">
+            <input type="text" placeholder="Введите Свое ФИО" style="margin-bottom: 10%" id="volfio">
+            <input type="text" placeholder="Введите Паспортные Данные" style="margin-bottom: 10%" id="volpassport">
+            <input type="text" placeholder="Введите Номер Телефона" style="margin-bottom: 10%" id="volphone">
+            <a class="waves-effect waves-light btn blue darken-3" style="margin-top: 5%;margin-left:37%" id="volsignup">Войти</a>
+    </div>
+    
+    <div class="container" id="clientregis">
+        <input type="text" placeholder="Введите ФИО Родителя" style="margin-bottom: 10%" id="clientparentfio">
+        <input type="text" placeholder="Введите ФИО Ребенка" style="margin-bottom: 10%" id="clientchildfio">
+        <input type="text" placeholder="Введите Диагноз Ребенка" style="margin-bottom: 10%" id="clientdiagnosis">
+        <input type="text" placeholder="Введите Физ. Ограничения Ребенка" style="margin-bottom: 10%" id="clientlimitation">
+        <input type="text" placeholder="Введите Номер Телефона" style="margin-bottom: 10%" id="clientphone">
+        <a class="waves-effect waves-light btn blue darken-3" style="margin-top: 5%;margin-left:37%" id="clientsignup">Войти</a>
+    </div>
+    
+    <div class="container" id="clientpage">
+        <h3>Страница нуждающегося</h3>
+    </div>
+    
+    <div class="container" id="volpage">
+        <h3>Страница Волонтера</h3>
+    </div>
+    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script type="text/javascript">
+        //Проверка на наличие данных на localstorage и при отсутствие данных запуск регистрации
+        $(document).ready(function() {
+            if (localStorage.hasOwnProperty("user_id")) {
+                console.log("ok");
+                $.ajax({
+                    url: "http://127.0.0.1:8000/check_role",
+                    data: {
+                       "user_id": localStorage.user_id, 
+                    },
+                    success: function(arg) {
+                        console.log(arg);
+                        if (arg.length == 0) {
+                            $("#checkrole").show();
+                        }else{
+                            if(arg[0].status == 0){
+                                location.replace("clientpage.html");
+                            }else if(arg[0].status == 1){
+                                location.replace("volpage.html");     
+                            }
+                        }
+                    }     
+                })
+            } else {
+                $("#signup").show();
+            }
+        });
+
+        //Нажатие на кнопку "я зарегистрировался"
+        $("#signinbtn").on('click', function() {
+            $("#signup").hide();
+            $("#signin").show();
+        });
+
+        //Нажатие на кнопку "назад"
+        $("#signupbtn").on('click', function() {
+            $("#signup").show();
+            $("#signin").hide();
+        });
+        
+        //Нажатие кнопки "я волонтер"
+        $("#choosevol").on('click', function() {
+            $("#volregis").show();
+            $("#checkrole").hide();
+        });
+        
+        //Нажатие кнопки "я нуждаюсь в помощи"
+        $("#chooseclient").on('click', function() {
+            $("#clientregis").show();
+            $("#checkrole").hide();
+        });
+
+        //ajax-запрос при регистрации
+        $("#singinajaxbtn").on('click',
+            function() {
+                if ($("#password").val() == $("#password_check").val()) {
+                    $.ajax({
+                        url: "http://127.0.0.1:8000/project_regis",
+                        data: {
+                            "login": $("#login").val(),
+                            "password": $("#password").val(),
+                            "email": $("#email").val()
+                        },
+                        success: function(arg) {
+                            localStorage.setItem("user_id", arg);
+                        }
+                    });
+                } else {
+                    alert("Пароли не совпадают!");
+                }
+
+            });
+
+        // ajax-запрос при входе в аккаунт
+        $("#signupajaxbtn").on('click',
+            function() {
+                $.ajax({
+                    url: "http://127.0.0.1:8000/project_login",
+                    data: {
+                        "signinlogin": $("#signinlogin").val(),
+                        "signinpassword": $("#signinpassword").val()
+                    },
+                    success: function(arg) {
+                        if (arg.length != 0) {
+                            localStorage.setItem("user_id", arg[0].id);
+                            $.ajax({
+                                url: "http://127.0.0.1:8000/check_role",
+                                data: {
+                                    "user_id": localStorage.user_id,
+                                },
+                                success: function(arg) {
+                                    console.log(arg);
+                                    if (arg.length == 0) {
+                                        $("#checkrole").show();
+                                        $("#signin").hide();
+                                    } else {
+                                        console.log('ok');
+                                    }
+                                }
+                            })
+                        } else {
+                            alert('ПОЛЬЗОВАТЕЛЬ НЕ НАЙДЕН!');
+                        }
+                    }
+                })
+
+            });
+        
+        //Ajax-Запрос для регистрации волонтера
+        $("#volsignup").on('click', 
+            function(){
+                $.ajax({
+                    url:"http://127.0.0.1:8000/vol_regis",
+                    data: {
+                        "user_id": localStorage.user_id,
+                        "fio": $("#volfio").val(),
+                        "pass_data": $("#volpassport").val(),
+                        "phone": $("#volphone").val(),
+                    },
+                    success: function() {
+                        console.log('vol success');
+                    }
+                })
+            
+        });
+        //Ajax-запрос для регистрации нуждающихся в помощи
+        $("#clientsignup").on('click',
+            function(){
+                $.ajax({
+                    url:"http://127.0.0.1:8000/client_regis",
+                    data: {
+                        "user_id": localStorage.user_id,
+                        "parents_fio": $("#clientparentfio").val(),
+                        "child_fio": $("#clientchildfio").val(),
+                        "diagnosis": $("#clientdiagnosis").val(),
+                        "phys_limit": $("#clientlimitation").val(),
+                        "phone": $("#clientphone").val(),
+                    },
+                    success: function() {
+                        console.log("client success");
+                    }
+                })
+            
+        });
+        
+        
+
+    </script>
+</body>
+
+</html>
